@@ -1,10 +1,7 @@
 Rails.application.routes.draw do
 
+  resources :products
 
-  get 'shops/index'
-  get 'shops/show'
-  get 'shops/new'
-  get 'shops/edit'
   devise_for :shops,
     path: 'shops',
     controllers: {

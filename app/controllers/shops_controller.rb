@@ -19,6 +19,7 @@ class ShopsController < ApplicationController
     @shop = Shop.new(shop_params)
 
     if @shop.save
+      logger.debug "shop: #{@shop.attributes.inspect}"
       redirect_to shop_url(@shop), notice: "ショップ「#{@shop.name}」を開店しました"
     else
       render :new
@@ -45,6 +46,6 @@ class ShopsController < ApplicationController
   end
 
   def set_shop
-    @shops = Shops.find(params[:id])
+    @shops = Shop.find(params[:id])
   end
 end

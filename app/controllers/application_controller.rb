@@ -1,5 +1,6 @@
 class ApplicationController < ActionController::Base
-
+  helper_method :current_shop
+  helper_method :current_user
   before_action :configure_permitted_parameters, if: :devise_controller?
 
   protected
@@ -12,5 +13,13 @@ class ApplicationController < ActionController::Base
     else
       super
     end
+  end
+
+  def current_shop
+    @current_shop ||= Shop.find_by(id: session[:shop_id]) if session[:shop_id]
+  end
+
+  def current_user
+    @current_user ||= User.find_by(id: session[:user_id]) if session[:user_id]
   end
 end
