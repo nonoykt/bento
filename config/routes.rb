@@ -1,4 +1,10 @@
 Rails.application.routes.draw do
+
+
+  get 'shops/index'
+  get 'shops/show'
+  get 'shops/new'
+  get 'shops/edit'
   devise_for :shops,
     path: 'shops',
     controllers: {

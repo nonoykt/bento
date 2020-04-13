@@ -1,0 +1,13 @@
+h1 All Shops
+
+.navbar.justify-content-end
+  = link_to 'HOME', root_path, class: 'nav-link'
+
+.mb-3
+table.table.table-hover
+  thead.thead-default
+    tr
+      th= Shop.human_attribute_name(:name)
+      th= Shop.human_attribute_name(:description)
+    tbody
+      - @shops.each do |shop|
