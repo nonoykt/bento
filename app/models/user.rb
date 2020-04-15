@@ -5,7 +5,6 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable, :confirmable,
          :omniauthable, omniauth_providers: [:twitter]
 
-
   def self.find_for_oauth(auth)
     user = User.where(uid: auth.uid, provider: auth.provider).first
 

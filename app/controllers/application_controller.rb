@@ -1,9 +1,16 @@
 class ApplicationController < ActionController::Base
-  helper_method :current_shop
-  helper_method :current_user
+
   before_action :configure_permitted_parameters, if: :devise_controller?
 
+  def after_sign_up_path_for(users)
+    users_show_path
+  end
+
   protected
+
+  def sign_in_required
+    redirect_to new_user_session_url unless user_sign_in?
+  end
 
   def configure_permitted_parameters
     if resource_class == User
@@ -15,11 +22,4 @@ class ApplicationController < ActionController::Base
     end
   end
 
-  def current_shop
-    @current_shop ||= Shop.find_by(id: session[:shop_id]) if session[:shop_id]
-  end
-
-  def current_user
-    @current_user ||= User.find_by(id: session[:user_id]) if session[:user_id]
-  end
 end

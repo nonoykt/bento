@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_04_13_124729) do
+ActiveRecord::Schema.define(version: 2020_04_14_081452) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -18,8 +18,11 @@ ActiveRecord::Schema.define(version: 2020_04_13_124729) do
   create_table "products", force: :cascade do |t|
     t.string "name", limit: 30, null: false
     t.text "description", null: false
+    t.bigint "shop_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["shop_id", "created_at"], name: "index_products_on_shop_id_and_created_at"
+    t.index ["shop_id"], name: "index_products_on_shop_id"
   end
 
   create_table "shops", force: :cascade do |t|
@@ -34,6 +37,7 @@ ActiveRecord::Schema.define(version: 2020_04_13_124729) do
     t.string "unconfirmed_email"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "name"
     t.index ["confirmation_token"], name: "index_shops_on_confirmation_token", unique: true
     t.index ["email"], name: "index_shops_on_email", unique: true
     t.index ["reset_password_token"], name: "index_shops_on_reset_password_token", unique: true
@@ -58,4 +62,5 @@ ActiveRecord::Schema.define(version: 2020_04_13_124729) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "products", "shops"
 end
