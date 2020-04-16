@@ -1,16 +1,8 @@
 class ApplicationController < ActionController::Base
-
+  protect_from_forgery with: :exception
   before_action :configure_permitted_parameters, if: :devise_controller?
 
-  def after_sign_up_path_for(users)
-    users_show_path
-  end
-
   protected
-
-  def sign_in_required
-    redirect_to new_user_session_url unless user_sign_in?
-  end
 
   def configure_permitted_parameters
     if resource_class == User
@@ -20,6 +12,14 @@ class ApplicationController < ActionController::Base
     else
       super
     end
+  end
+
+  def sign_in_required
+    redirect_to new_user_session_url unless user_signed_in?
+  end
+
+  def sign_in_required
+    redirect_to new_shop_session_url unless shop_signed_in?
   end
 
 end

@@ -1,7 +1,8 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy]
-  before_action :authenticate_user!, only: [:edit]
-  before_action :sign_in_required, only: [:show]
+  before_action :authenticate_user!
+  before_action :sign_in_required
+
 
   def index
     @users = User.all
@@ -48,6 +49,11 @@ class UsersController < ApplicationController
   end
 
   def set_user
-    @user = User.find(params[:id])
+    @user = current_user
   end
+
+  def sign_in_path_for(resource)
+    user_path(id: current_user.id)
+  end
+
 end

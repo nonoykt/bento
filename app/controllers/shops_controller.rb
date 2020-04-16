@@ -1,6 +1,7 @@
 class ShopsController < ApplicationController
   before_action :set_shop, only: [:show, :edit, :update, :destroy]
-  before_action :authenticate_shop!, only: [:edit]
+  before_action :sign_in_required
+  before_action :authenticate_shop!
 
   def index
     @shops = Shop.all
@@ -47,6 +48,6 @@ class ShopsController < ApplicationController
   end
 
   def set_shop
-    @shops = Shop.find(params[:id])
+    @shops = current_shop
   end
 end

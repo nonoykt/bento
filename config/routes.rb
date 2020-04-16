@@ -1,7 +1,9 @@
 Rails.application.routes.draw do
 
+# <--products-->
   resources :products
 
+# <--shops-->
   devise_for :shops,
     path: 'shops',
     controllers: {
@@ -9,13 +11,14 @@ Rails.application.routes.draw do
       passwords: 'shops/passwords',
       sessions: 'shops/sessions',
       registrations: 'shops/registrations'}
-  resources :shops
-
   devise_scope :shop do
     get 'sign_in', to: 'shops/sessions#new'
     get 'sign_out', to: 'shops/sessions#destroy'
   end
+  
+  resources :shops
 
+# <--users-->
   devise_for :users,
     path: 'users',
     controllers: {
@@ -31,5 +34,7 @@ Rails.application.routes.draw do
     get "sign_in", to: "users/sessions#new"
     get "sign_out", to: "users/sessions#destroy"
   end
+
   resources :users
+
 end
