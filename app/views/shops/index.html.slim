@@ -1,8 +1,5 @@
 h1 All Shops
 
-.navbar.justify-content-end
-  = link_to 'HOME', root_path, class: 'nav-link'
-
 .mb-3
 table.table.table-hover
   thead.thead-default
@@ -11,3 +8,7 @@ table.table.table-hover
       th= Shop.human_attribute_name(:description)
     tbody
       - @shops.each do |shop|
+
+h1 All Shops
+
+= render partial: 'shop', locals: { shop: @shop }

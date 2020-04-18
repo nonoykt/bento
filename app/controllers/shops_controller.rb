@@ -48,6 +48,6 @@ class ShopsController < ApplicationController
   end
 
   def set_shop
-    @shops = current_shop
+    @shops = Shop.find_by(params[:id])
   end
 end

@@ -2,7 +2,7 @@ doctype html
 html
   head
     title
-      | Bento | 御弁当で日々に微笑みを
+      | STORE | 御弁当で日々に微笑みを
     = csrf_meta_tags
     = csp_meta_tag
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
@@ -13,7 +13,7 @@ html
     p.alert
       = alert
     .app-title.navbar.navbar-expand-md.navbar-light.bg-light
-      .navbar-brand Bento
+      .navbar-brand STORE
 
       ul.navbar-nav.ml-auto
         li.nav-item= link_to '商品一覧', products_path, class: 'nav-link'
@@ -26,7 +26,13 @@ html
       - else
         li.nav-item= link_to 'ユーザーログイン', new_user_session_path, class: 'nav-link'
         li.nav-item= link_to '新規ユーザー登録', new_user_registration_path, class: 'nav-link'
-        li.nav-item= link_to 'ショップログイン', new_shop_session_path, class: 'nav-link'
-        li.nav-item= link_to '新規ショップ登録', new_shop_registration_path, class: 'nav-link'
     .container
+      p.notice = notice
+      p.alert = alert
       = yield
+
+    .app-title.navbar.navbar-expand-md.navbar-light.bg-light
+      .navbar-brand STORE | 店舗様リンク
+      ul.navbar-nav.ml-auto
+      li.nav-item= link_to 'ショップログイン', new_shop_session_path, class: 'nav-link'
+      li.nav-item= link_to '新規ショップ登録', new_shop_registration_path, class: 'nav-link'

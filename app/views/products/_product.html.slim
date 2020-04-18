@@ -1,2 +1,10 @@
-
-h1 product
+h1
+  | Name of all the people
+- @products.each do |product|
+  |  Name:
+  = product.name
+  br
+  |  description:
+  = product.description
+  br
+  br
