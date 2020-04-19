@@ -1,10 +1,8 @@
-h1
-  | Name of all the people
 - @products.each do |product|
-  |  Name:
-  = product.name
-  br
-  |  description:
-  = product.description
-  br
-  br
+  .card.text-black.bg-light.mb-3
+    .card-header
+      = link_to product.name, product_path(product.id)
+    .card-body
+      |  <img class="card-img" src="", alt="Card image cap">
+    .card-footer
+      = product.description

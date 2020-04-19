@@ -21,5 +21,4 @@ class ApplicationController < ActionController::Base
   def sign_in_required
     redirect_to new_shop_session_url unless shop_signed_in?
   end
-
 end

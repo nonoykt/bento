@@ -22,7 +22,7 @@ class UsersController < ApplicationController
 
     if @user.save
       logger.debug "user: #{@user.attributes.inspect}"
-      redirect_to users_url(@user), notice: "ユーザー「#{@user.name}」を登録しました"
+      redirect_to users_url(@user.id), notice: "ユーザー「#{@user.name}」を登録しました"
     else
       render :new
     end
@@ -30,7 +30,7 @@ class UsersController < ApplicationController
 
   def update
     if @user.update
-      redirect_to users_url(@user), notice: "ユーザー「#{@user.name}」を更新しました"
+      redirect_to users_url(@user.id), notice: "ユーザー「#{@user.name}」を更新しました"
     else
       render :edit
     end
@@ -48,7 +48,7 @@ class UsersController < ApplicationController
   end
 
   def set_user
-    @user = User.find_by(params[:id])
+    @user = User.find(params[:id])
   end
 
 end

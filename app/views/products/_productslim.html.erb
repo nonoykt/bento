@@ -1,5 +1,13 @@
-<h1>Name of all the people</h1>
-<% @product.each do |product| %>
-  Name: <%= product.name %><br>
-  Email: <%= product.email %><br>
+<% @products.each do |product| %>
+  <div class="card text-white bg-dark mb-3" style="max-width: 20rem;">
+    <div class="card-header">
+      <%= link_to product.name, product_path(@product.id) %>
+    </div>
+    <div class="card-body">
+      <img class="card-img" src="", alt="Card image cap">
+    </div>
+    <div class="card-footer">
+      <%= product.description %>
+    </div>
+  </div>
 <% end %>

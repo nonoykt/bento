@@ -1,14 +1,3 @@
 h1 All Shops
 
-.mb-3
-table.table.table-hover
-  thead.thead-default
-    tr
-      th= Shop.human_attribute_name(:name)
-      th= Shop.human_attribute_name(:description)
-    tbody
-      - @shops.each do |shop|
-
-h1 All Shops
-
 = render partial: 'shop', locals: { shop: @shop }

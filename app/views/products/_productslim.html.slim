@@ -1,9 +1,8 @@
-h1
-  | Name of all the people
-- @product.each do |product|
-  |  Name:
-  = product.name
-  br
-  |  Email:
-  = product.email
-  br
+- @products.each do |product|
+  .card.text-white.bg-dark.mb-3[style="max-width: 20rem;"]
+    .card-header
+      = link_to product.name, product_path(@product.id)
+    .card-body
+      |  <img class="card-img" src="", alt="Card image cap"> 
+    .card-footer
+      = product.description

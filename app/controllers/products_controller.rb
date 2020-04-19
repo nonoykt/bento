@@ -21,7 +21,7 @@ class ProductsController < ApplicationController
 
     if @product.save
       logger.debug "product: #{@product.attributes.inspect}"
-      redirect_to product_url(@product), notice: "商品「#{@product.name}」が登録されました。"
+      redirect_to product_url(@product.id), notice: "商品「#{@product.name}」が登録されました。"
     else
       render :new
     end
@@ -29,7 +29,7 @@ class ProductsController < ApplicationController
 
   def update
     if @product.update
-      redirct_to product_url(@product), notice: "商品「#{@product.name}」を更新しました"
+      redirct_to product_url(@product.id), notice: "商品「#{@product.name}」を更新しました"
     else
       render :edit
     end

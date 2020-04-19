@@ -1,2 +1,22 @@
 h1 Products#show
-p Find me in app/views/products/show.html.slim
+
+= link_to "Shop Profile", shop_path, class: 'nav-link'
+= link_to "All Products", products_path, class: 'nav-link'
+- if shop_signed_in?
+  = link_to "edit product", edit_product_path, class: 'nav-link'
+
+.card.text-white.bg-dark.mb-3
+  .card-header
+    = link_to @product.name, product_path(@product.id)
+  .card-body
+    |  <img class="card-img" src="", alt="Card image cap">
+  .card-footer
+    = @product.description
+
+
+p - memo -
+p 予約機能（購入機能）
+p いいね機能
+p 残数カウント機能
+p プロダクトの製造元ショップへのリンク
+p -userでログインの場合は編集リンクなし

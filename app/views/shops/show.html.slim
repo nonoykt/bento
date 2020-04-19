@@ -1,2 +1,20 @@
 h1 ショップ詳細
-p Find me in app/views/shops/show.html.slim
+
+= link_to "All Shops", shops_path, class: 'nav-link'
+- if current_shop
+  = link_to "Edit Profile", edit_shop_registration_path, class: 'nav-link'
+
+= @shop.name
+br
+= @shop.email
+br
+br
+br
+p - memo -
+p このショップの商品の一覧
+p follow機能
+p follower数表示機能
+p follow(shop <- user の一方通行)
+p - (user <-> user は相互間)
+p マップ機能
+p instagram tabelog 等のAPI連携

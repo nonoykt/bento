@@ -1,7 +1,7 @@
 class ShopsController < ApplicationController
   before_action :set_shop, only: [:show, :edit, :update, :destroy]
-  before_action :sign_in_required
-  before_action :authenticate_shop!
+  before_action :sign_in_required, only: [:edit, :new, :update, :destory]
+  before_action :authenticate_shop!, only: [:edit, :new, :update, :destory]
 
   def index
     @shops = Shop.all
@@ -22,7 +22,7 @@ class ShopsController < ApplicationController
 
     if @shop.save
       logger.debug "shop: #{@shop.attributes.inspect}"
-      redirect_to shop_url(@shop), notice: "ショップ「#{@shop.name}」を開店しました"
+      redirect_to shop_url(@shop.id), notice: "ショップ「#{@shop.name}」を開店しました"
     else
       render :new
     end
@@ -30,7 +30,7 @@ class ShopsController < ApplicationController
 
   def update
     if @shop.update
-      redirect_to shop_url(@shop), notice: "ショップ「#{@shop.name}」を更新しました"
+      redirect_to shop_url(@shop.id), notice: "ショップ「#{@shop.name}」を更新しました"
     else
       render :edit
     end
@@ -48,6 +48,6 @@ class ShopsController < ApplicationController
   end
 
   def set_shop
-    @shops = Shop.find_by(params[:id])
+    @shop = Shop.find(params[:id])
   end
 end
